@@ -8,10 +8,16 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
+<script type="module">
+    $( document ).ready(function() {
+        console.log( "ready!" );
+    });
+</script>
+
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
+    <button type="button" class="btn btn-danger">TEST BUTTON</button>
     <ul>
         <li>Your controller at <code>C:/xampp/htdocs/formation/EspPlatform/src/Controller/HomePageController.php</code></li>
         <li>Your template at <code>C:/xampp/htdocs/formation/EspPlatform/templates/home_page/index.html.twig</code></li>
