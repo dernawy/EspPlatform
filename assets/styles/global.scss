@@ -1,0 +1,68 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+
+$primary-bg-subtle: #031633;
+$primary-border-subtle: #084298;
+$primary-text-emphasis: #6ea8fe;
+
+$secondary-bg-subtle: #161719;
+$secondary-border-subtle: #41464b;
+$secondary-text-emphasis: #a7acb1;
+
+$info-bg-subtle: #032830;
+$info-border-subtle: #087990;
+$info-text-emphasis: #6edff6;
+
+$dark-bg-subtle: #1a1d20;
+$dark-border-subtle: #343a40;
+$dark-text-emphasis: #dee2e6;
+
+$light-bg-subtle: mix($gray-100, $white) !default;
+$light-border-subtle: #495057;
+$light-text-emphasis: #f8f9fa;
+
+$success-bg-subtle: #051b11;
+$success-border-subtle: #0f5132;
+$success-text-emphasis: #75b798;
+
+
+$warning-bg-subtle: #332701;
+$warning-border-subtle: #997404;
+$warning-text-emphasis: #ffda6a;
+
+
+$danger-bg-subtle: #2c0b0e;
+$danger-border-subtle: #842029;
+$danger-text-emphasis: #ea868f;
+$danger-link-color: #ea868f;
+
+$form-label-color: #546e85;
+
+$theme-colors: (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "success":    $success,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger,
+    "light":      $light,
+    "dark":       $dark
+);
+
+$box-shadow:                  0 .5rem 1rem rgba($secondary, .15);
+$box-shadow-sm:               0 .125rem .25rem rgba($secondary, .075);
+$box-shadow-lg:               0 1rem 3rem rgba($secondary, .175);
+$box-shadow-inset:            inset 0 1px 2px rgba($secondary, .075);
+
+$vid-toolbar-colors: (
+
+    "bg-color-primary": #090b0d,
+    "text-color-primary": $primary-text-emphasis
+);
+
+$theme-colors: map-merge($theme-colors, $vid-toolbar-colors);
+
+@import "~bootstrap";

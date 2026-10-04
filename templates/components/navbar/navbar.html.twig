@@ -1,0 +1,199 @@
+{# templates/components/navbar/navbar.html.twig #}
+
+{% set locale = app.request.attributes.get('_locale') %}
+
+
+
+{% set currentPath = app.request.get('_route') %}
+
+{% block page_navbar %}
+
+    <style>
+        .dropdown-menu[data-bs-popper] {
+
+        }
+
+        .me-auto-rtl {
+            margin-left: auto !important;
+        }
+    </style>
+
+    <div class="">
+
+        <nav class="navbar navbar-dark navbar-expand-lg navbar-dark bg-dark bg-gray-100 fixed-top inset-x-0">
+
+            <!-- Navbar content -->
+
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="#">{% trans from 'messages' %}app.nav.page.title{% endtrans %}</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#headerNavbar" aria-controls="headerNavbar" aria-expanded="false" aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end text-right" id="headerNavbar">
+
+                    {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                        <ul class="navbar-nav me-auto-rtl mb-2 mb-lg-0 nav-pages-elements">
+
+                            {% if currentPath is not same as('app_home_page') %}
+
+                                <li class="nav-item">
+
+                                    <a class="nav-link active" aria-current="page" href="{{ path('app_home_page')}}">{% trans from 'messages' %}app.navbar.home{% endtrans %}</a>
+
+                                </li>
+
+                            {% endif %}
+
+                            {% if currentPath is not same as('app_user_page') %}
+
+                                <li class="nav-item">
+
+                                    <a class="nav-link active" aria-current="page" href="{{ path('app_user_page')}}">{% trans from 'messages' %}app.navbar.user{% endtrans %}</a>
+
+                                </li>
+
+                            {% endif %}
+
+                        </ul>
+
+                        <!-- User Profile Dropdown -->
+                        <div class="ms-auto d-flex align-items-center">
+
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <!-- The Circular Image -->
+                                    <img src="https://placeholder.com" alt="Avatar" class="rounded-circle" width="35" height="35">
+                                </a>
+                                {% if app.user %}
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                        <li><a class="dropdown-item" href="{{ path('app_user_profile')}}">{% trans from 'messages' %}app.user_dropdown.profile{% endtrans %}</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_user_settings')}}">{% trans from 'messages' %}app.user_dropdown.settings{% endtrans %}</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                                    </ul>
+                                {% else %}
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                        <li><a class="dropdown-item" href="{{ path('app_user_login')}}">{% trans from 'messages' %}app.user_dropdown.login{% endtrans %}</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_user_register')}}">{% trans from 'messages' %}app.user_dropdown.register{% endtrans %}</a></li>
+                                    </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+
+                    {% elseif locale == 'en' %} <!-- ENGLISH  -->
+
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-pages-elements justify-content-end">
+
+                            {% if currentPath is not same as('app_home_page') %}
+
+                                <li class="nav-item">
+
+                                    <a class="nav-link active" aria-current="page" href="{{ path('app_home_page')}}">{% trans from 'messages' %}app.navbar.home{% endtrans %}</a>
+
+                                </li>
+
+                            {% endif %}
+
+                            {% if currentPath is not same as('app_devices') %}
+
+                                <li class="nav-item">
+
+                                    <a class="nav-link active" aria-current="page" href="{{ path('app_devices')}}">{% trans from 'messages' %}app.navbar.devices{% endtrans %}</a>
+
+                                </li>
+
+                            {% endif %}
+
+                        </ul>
+
+                        <!-- User Profile Dropdown -->
+                        <div class="ms-auto d-flex align-items-center">
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <!-- The Circular Image -->
+                                    <img src="https://placehold.co/400" alt="Avatar" class="rounded-circle" width="35" height="35">
+                                </a>
+                                {% if app.user %}
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                        <li><a class="dropdown-item" href="{{ path('app_user_profile')}}">{% trans from 'messages' %}app.user_dropdown.profile{% endtrans %}</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_user_settings')}}">{% trans from 'messages' %}app.user_dropdown.settings{% endtrans %}</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                                    </ul>
+                                {% else %}
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                        <li><a class="dropdown-item" href="{{ path('app_user_login')}}">{% trans from 'messages' %}app.user_dropdown.login{% endtrans %}</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_user_register')}}">{% trans from 'messages' %}app.user_dropdown.register{% endtrans %}</a></li>
+                                    </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    {% else %} <!-- FRENCH  -->
+
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-pages-elements justify-content-end">
+
+                            {% if currentPath is not same as('app_home_page') %}
+
+                                <li class="nav-item">
+
+                                    <a class="nav-link active" aria-current="page" href="{{ path('app_home_page')}}">{% trans from 'messages' %}app.navbar.home{% endtrans %}</a>
+
+                                </li>
+
+                            {% endif %}
+
+                            {% if currentPath is not same as('app_user_page') %}
+
+                                <li class="nav-item">
+
+                                    <a class="nav-link active" aria-current="page" href="{{ path('app_user_page')}}">{% trans from 'messages' %}app.navbar.user{% endtrans %}</a>
+
+                                </li>
+
+                            {% endif %}
+
+                        </ul>
+
+                        <!-- User Profile Dropdown -->
+                        <div class="ms-auto d-flex align-items-center">
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <!-- The Circular Image -->
+                                    <img src="https://placehold.co/400" alt="Avatar" class="rounded-circle" width="35" height="35">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                    <li><a class="dropdown-item" href="{{ path('app_user_register')}}">Profile</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('app_user_login')}}">Settings</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+
+
+                </div>
+
+            </div>
+
+        </nav>
+
+        <script type="text/javascript">
+            console.log();
+        </script>
+
+    </div>
+
+
+{% endblock page_navbar %}

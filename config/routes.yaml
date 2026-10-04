@@ -9,3 +9,47 @@
 
 controllers:
     resource: routing.controllers
+
+kernel:
+    resource: ../src/Kernel.php
+    type: attribute
+
+home_page:
+    path: /
+    controller: 'App\Controller\HomePageController::homeNoLocale'
+
+registeration_page:
+    path: /register
+    controller: 'App\Controller\RegisterController::registerNoLocal'
+
+user_registeration_page:
+    path: /user/register
+    controller: 'App\Controller\RegisterController::users_register'
+    methods: [ 'GET', 'POST' ]
+
+devices_page:
+    path: /devices
+    controller: 'App\Controller\DevicesController::devicesNoLocal'
+
+user_devices_page:
+    path: /user/devices
+    controller: 'App\Controller\DevicesController::index'
+    methods: [ 'GET', 'POST' ]
+
+profile_page:
+    path: /profile
+    controller: 'App\Controller\UserProfileController::profileNoLocal'
+
+user_profile_page:
+    path: /user/profile
+    controller: 'App\Controller\UserProfileController::index'
+    methods: [ 'GET', 'POST' ]
+
+settings_page:
+    path: /settings
+    controller: 'App\Controller\UserSettingsController::userSettingsNoLocal'
+
+user_settings_page:
+    path: /user/settings
+    controller: 'App\Controller\UserSettingsController::index'
+    methods: [ 'GET', 'POST' ]

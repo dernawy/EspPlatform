@@ -1,6 +1,16 @@
 twig:
     file_name_pattern: '*.twig'
 
+    default_path: '%kernel.project_dir%/templates'
+    strict_variables: true
+
+    paths:
+        'templates/': 'tmpl_rout'
+        'templates/components/': 'components_rout'
+        'templates/components/navbar/': 'navbar_tmpl'
+
+    form_themes: [ 'bootstrap_5_layout.html.twig' ]
+
 when@test:
     twig:
         strict_variables: true

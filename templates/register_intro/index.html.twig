@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans from 'messages' %}application.title.register.intro.page.title{% endtrans %}{% endblock %}
+
+{% block body %}
+<style>
+    .register-intro-wrapper { margin: 1em auto; font: 18px/1.5 sans-serif; }
+    .register-intro-header { display: block; width: auto; margin: 0 auto; padding: 20px; }
+    .register-intro-header-slogan { display: block; padding: 2px 12px; }
+    .register-intro-alert { display: block; width: 80%; margin: 0 auto; }
+    .register-intro-header-alert-content { display: block; width: 80%; padding: 2px 12px; margin: 0 auto;}
+    .register-intro-wrapper h1 { text-align: center; padding: 2px 6px; }
+    .cy_register_intro_content { text-align: center; display: inline-flex; margin: 0 auto; }
+    .cy_register_intro_content_left, .cy_register_intro_content_mid, .cy_register_intro_content_right { padding: 30px; margin: 30px 20px}
+
+</style>
+
+<div class="register-intro-wrapper">
+
+    <div class="col-md-12">
+
+        <div class="row">
+            <div class="register-intro-header">
+                <h1>Choose registration type</h1>
+                <span class="register-intro-header-slogan"><p>Slogan</p></span>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="register-intro-alert">
+                <div class="alert alert-warning" role="alert">
+                    <div class="register-intro-alert-header"><h4 class="alert-heading">Alert Label</h4></div>
+
+                    <div class="register-intro-alert-message">AlertAlertAlertAlertAlertAlertAlertAlertAlertAlertAlertAlert</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="cy_register_intro_content">
+
+                <div class="container text-center">
+
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-4">
+
+                            <div class="card cy_register_intro_content_left">
+                                <div class="card-header">
+                                    {% trans from 'messages' %}app.register.intro.user.card.label{% endtrans %}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{% trans from 'messages' %}app.register.intro.user.card.title{% endtrans %}</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <a href="{{ path('app_users_register') }}" class="btn btn-primary">{% trans from 'messages' %}app.register.button.text{% endtrans %}</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="card cy_register_intro_content_mid">
+                                <div class="card-header">
+                                    {% trans from 'messages' %}app.register.intro.moderator.card.label{% endtrans %}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{% trans from 'messages' %}app.register.intro.moderator.card.title{% endtrans %}</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <a href="{{ path('app_users_register') }}" class="btn btn-primary">{% trans from 'messages' %}app.register.button.text{% endtrans %}</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+
+                            <div class="card cy_register_intro_content_right">
+                                <div class="card-header">
+                                    {% trans from 'messages' %}app.register.intro.manager.card.label{% endtrans %}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{% trans from 'messages' %}app.register.intro.manager.card.title{% endtrans %}</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <a href="{{ path('app_users_register') }}" class="btn btn-primary">{% trans from 'messages' %}app.register.button.text{% endtrans %}</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
