@@ -1,5 +1,32 @@
-@import '../vendor/bootstrap/dist/css/bootstrap.min.css';
-
 body {
-    background-color: skyblue;
+    zoom: 0.8; /* Zooms out by 80% */
+    background-color: #1a1d20;
+}
+
+.py-4{
+    padding-bottom: 2.2rem !important;
+}
+
+.navbar-toggler-icon {
+    background-image: var(--bs-navbar-toggler-icon-bg) !important;
+}
+
+.sub-nav-wrapper {
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dotted rgb(96 139 168);
+}
+
+.sub-nav-wrapper .nav-link {
+    background-color: white;
+}
+
+.sub-nav-wrapper ul li {
+    margin: 0 10px;
+}
+
+.form-text {
+    color: rgb(131 168 205) !important;
 }

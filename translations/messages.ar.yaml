@@ -1,0 +1,45 @@
+app.nav.page.title: ESP Platform
+app.navbar.home: الرئيسية
+app.navbar.user: مستخدم
+
+app.user_dropdown.profile: الملف الشخصي
+app.user_dropdown.settings: الإعدادات
+
+app.user_dropdown.login: تسجيل الدخول
+app.user_dropdown.register: تسجيل
+## REGISTER INTRO ##
+
+app.register.intro.user.card.label: تسجيل المستخدمين
+app.register.intro.moderator.card.label: تسجيل المشرفين
+app.register.intro.manager.card.label: تسجيل المدراء
+app.register.intro.user.card.title: التسجيل كمستخدم
+app.register.intro.moderator.card.title: التسجيل كمشرف
+app.register.intro.manager.card.title: التسجيل كمدير
+app.register.button.text: تسجيل
+
+## REGISTER ##
+
+app.register.page.title: تسجيل المستخدمين
+
+app.register.form.fullname.label: الإسم الكامل
+app.register.form.username.label: إسم المستخدم
+app.register.form.password.label: كلمة المرور
+app.register.form.repassword.label: تأكيد كلمة المرور
+app.register.form.email.label: البريد الإلكتروني
+app.register.form.phone.label: رقم الهاتف (الأرضي/المحمول)
+
+app.text.new.user.register.form.placeholder.fullname.text: الإسم الكامل
+app.text.new.user.register.form.placeholder.username.text: إسم المستخدم
+app.text.new.user.register.form.placeholder.password.text: كلمة المرور
+aoo.text.new.user.register.form.placeholder.repassword.text: تأكيد كلمة المرور
+app.text.new.user.register.form.placeholder.email.text: البريد الإلكتروني
+app.text.new.user.register.form.placeholder.phone.text: رقم الهاتف (الأرضي/المحمول)
+
+app.text.new.user.register.form.fullname.message: الرجاء إدخال الاسم الكامل.
+app.text.new.user.register.form.username.message:  إسم المستخدم يجب أن يكون بين (6 - 12) حرف ورمز.
+app.text.new.user.register.form.email.message: البريد الإلكتروني يجب أن يكون صالحا وفعالا لاستقبل بريد تفعيل التسجيل والرسائل و الاشعارات الأخرى.
+app.text.new.user.register.form.password.message: كلمة المرور يجب أن تكون بين (6 - 64) حرف ورمز ويجب أن تحتوي على حرف لاتيني كبير على الاقل وأن تكون ممزوجة بين حروف وأرقام وحرف خاث واحد على لاأقل.
+app.text.new.user.register.form.repassword.message: أعد كتابة كلمة المرور.
+app.text.new.user.register.form.phone.message: رقم الهاتف يجب أن يكون بالثيغة التالية (33636128877+) صيغة الهواتف الخاصة بالاتحاد الأوروبي.
+app.text.new.user.register.form.terms.message: الرجاء الموافقة على شروط الاستخدام
+app.text.new.user.register.form.button.register.text: تسجيل

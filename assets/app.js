@@ -1,4 +1,5 @@
 import './stimulus_bootstrap.js';
+
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -10,8 +11,15 @@ import $ from 'jquery';
 
 window.$ = window.jQuery = $;
 
-import './styles/app.css';
-
 import 'bootstrap';
+
+
+import "./styles/core.min.css";
+import './styles/cyrenaica.min.css'
+import './styles/global.scss';
+import "./styles/app.css";
+
+
+
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

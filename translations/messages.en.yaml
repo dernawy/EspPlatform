@@ -1,0 +1,61 @@
+
+## NAVBAR ##
+app.nav.page.title: ESP Platform
+app.navbar.home: Home
+app.navbar.devices: Devices
+
+app.user_dropdown.profile: Profile
+app.user_dropdown.settings: Settings
+
+app.user_dropdown.login: Login
+app.user_dropdown.register: Register
+## REGISTER INTRO ##
+
+app.register.intro.user.card.label: Users Registration
+app.register.intro.moderator.card.label: Moderator Registration
+app.register.intro.manager.card.label: Manager Registration
+app.register.intro.user.card.title: Registration as User
+app.register.intro.moderator.card.title: Registration as Moderator
+app.register.intro.manager.card.title: Registration as Manager
+app.register.button.text: Register
+
+## REGISTER ##
+
+app.register.page.title: Users Registration
+
+app.register.form.fullname.label: Full name
+app.register.form.username.label: Username
+app.register.form.password.label: Password
+app.register.form.repassword.label: Retype the password
+app.register.form.email.label: Email address
+app.register.form.phone.label: (Phone/Mobile) number
+
+app.text.new.user.register.form.placeholder.fullname.text: Full name
+app.text.new.user.register.form.placeholder.username.text: Username
+app.text.new.user.register.form.placeholder.password.text: Password
+aoo.text.new.user.register.form.placeholder.repassword.text: Retype the password
+app.text.new.user.register.form.placeholder.email.text: Email address
+app.text.new.user.register.form.placeholder.phone.text: (Phone/Mobile) number
+
+app.text.new.user.register.form.fullname.message: Please enter your full name.
+app.text.new.user.register.form.username.message: The username must be between (6 & 12) characters.
+app.text.new.user.register.form.email.message: The email must be valid to receive the confirmation email and others technicals messages.
+app.text.new.user.register.form.password.message: The password must be between [6 - 64] characters, minimum one capital, numbers and special characters.
+app.text.new.user.register.form.repassword.message: Retype the password.
+app.text.new.user.register.form.phone.message: The phone number must be in this form [+33636128877], (UE) phone numbers format only.
+app.text.new.user.register.form.terms.message: Please accept the terms of use
+app.text.new.user.register.form.button.register.text: Register
+
+
+## DEVICES ##
+
+app.devices.page.title: Devices
+
+
+## PROFILE ##
+
+app.profile.page.title: Profile
+
+## USER SETTINGS ##
+
+app.user.settings.page.title: User settings
