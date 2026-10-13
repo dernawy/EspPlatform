@@ -1,20 +1,1485 @@
 {% extends 'base.html.twig' %}
+{% set locale = app.request.attributes.get('_locale') %}
 
 {% block title %}{% trans from 'messages' %}app.user.settings.page.title{% endtrans %}{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div class="container-fluid">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/xampp/htdocs/formation/EspPlatform/src/Controller/UserSettingsController.php</code></li>
-        <li>Your template at <code>C:/xampp/htdocs/formation/EspPlatform/templates/user_settings/index.html.twig</code></li>
-    </ul>
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+
+            <div class="row">
+                <div class="header">
+                    <h1>User Settings</h1>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+
+                    <ul class="nav nav-tabs nav-justified" id="id_user_settings_tabs" role="tablist">
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="profile-settings-tab" data-bs-toggle="tab" data-bs-target="#profile-settings-tab-pane" type="button" role="tab" aria-controls="profile-settings-tab-pane" aria-selected="true">{% trans from 'messages' %}app.user.settings.tab.label.profile.setting{% endtrans %}</button>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="site-settings-tab" data-bs-toggle="tab" data-bs-target="#site-settings-tab-pane" type="button" role="tab" aria-controls="site-settings-tab-pane" aria-selected="false">{% trans from 'messages' %}app.user.settings.tab.label.site.setting{% endtrans %}</button>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="style-settings-tab" data-bs-toggle="tab" data-bs-target="#style-settings-tab-pane" type="button" role="tab" aria-controls="style-settings-tab-pane" aria-selected="false">{% trans from 'messages' %}app.user.settings.tab.label.style.setting{% endtrans %}</button>
+                        </li>
+
+                    </ul>
+
+                    <div class="tab-content" id="user_settings_tab_content_container">
+
+                        <div class="tab-pane fade show active" id="profile-settings-tab-pane" role="tabpanel" aria-labelledby="profile-settings-tab" tabindex="0">...</div>
+                        <div class="tab-pane fade" id="site-settings-tab-pane" role="tabpanel" aria-labelledby="site-settings-tab" tabindex="0">...</div>
+
+                        <div class="tab-pane fade" id="style-settings-tab-pane" role="tabpanel" aria-labelledby="style-settings-tab" tabindex="0">
+
+                            <div class="row mb-4">
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+
+                                    <div class="tabs">
+
+                                        <button class="tab-button active" onclick="showSection('homepage', this)">Home Page</button>
+
+                                        <button class="tab-button" onclick="showSection('profile', this)">PROFILE</button>
+
+                                        <button class="tab-button" onclick="showSection('site_settings', this)">SITE SETTINGS</button>
+
+                                        <button class="tab-button" onclick="showSection('devices', this)">DEVICES</button>
+
+                                        <button class="tab-button" onclick="showSection('status', this)">STATUS</button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div id="homepage" class="section active">
+
+                                    <div class="card">
+
+                                        <div class="row">
+                                            <h2>Home Page</h2>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+
+                                                <div class="row">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="row">
+
+                                                            <div class="field">
+                                                                <label for="COUNTRY">BACKGROUND</label>
+                                                                <input id="COUNTRY" type="color" value="{{site_settings.site_style.styleData.style.pages.home.background_color}}">
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Title</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="TITLE_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="TITLE_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.title.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_COLOR">COLOR</label>
+                                                            <input id="TITLE_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.title.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_WEIGHT">WEIGHT</label>
+
+                                                            <select id="TITLE_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.title.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Body</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="BODY_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="BODY_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.text.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_COLOR">COLOR</label>
+                                                            <input id="BODY_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.text.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_WEIGHT">WEIGHT</label>
+                                                            <select id="BODY_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.text.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Button</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="BUTTON_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="BUTTON_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.buttons.text.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_COLOR">COLOR</label>
+                                                            <input id="BUTTON_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.buttons.text.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_WEIGHT">WEIGHT</label>
+                                                            <select id="BUTTON_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.buttons.text.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div id="profile" class="section">
+
+                                    <div class="card">
+
+                                        <div class="row">
+                                            <h2>Profile Page</h2>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+
+                                                <div class="row">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="row">
+
+                                                            <div class="field">
+                                                                <label for="COUNTRY">BACKGROUND</label>
+                                                                <input id="COUNTRY" type="color" value="{{site_settings.site_style.styleData.style.pages.home.background_color}}">
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Title</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="TITLE_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="TITLE_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.title.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_COLOR">COLOR</label>
+                                                            <input id="TITLE_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.title.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_WEIGHT">WEIGHT</label>
+
+                                                            <select id="TITLE_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.title.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Body</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="BODY_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="BODY_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.text.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_COLOR">COLOR</label>
+                                                            <input id="BODY_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.text.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_WEIGHT">WEIGHT</label>
+                                                            <select id="BODY_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.text.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Button</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="BUTTON_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="BUTTON_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.buttons.text.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_COLOR">COLOR</label>
+                                                            <input id="BUTTON_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.buttons.text.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_WEIGHT">WEIGHT</label>
+                                                            <select id="BUTTON_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.buttons.text.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div id="site_settings" class="section">
+
+                                    <div class="card">
+
+                                        <div class="row">
+                                            <h2>Site Settings Page</h2>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+
+                                                <div class="row">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="row">
+
+                                                            <div class="field">
+                                                                <label for="COUNTRY">BACKGROUND</label>
+                                                                <input id="COUNTRY" type="color" value="{{site_settings.site_style.styleData.style.pages.home.background_color}}">
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Title</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="TITLE_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="TITLE_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.title.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_COLOR">COLOR</label>
+                                                            <input id="TITLE_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.title.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_WEIGHT">WEIGHT</label>
+
+                                                            <select id="TITLE_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.title.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Body</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="BODY_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="BODY_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.text.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_COLOR">COLOR</label>
+                                                            <input id="BODY_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.text.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_WEIGHT">WEIGHT</label>
+                                                            <select id="BODY_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.text.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Button</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="BUTTON_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="BUTTON_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.buttons.text.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_COLOR">COLOR</label>
+                                                            <input id="BUTTON_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.buttons.text.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_WEIGHT">WEIGHT</label>
+                                                            <select id="BUTTON_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.buttons.text.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div id="devices" class="section">
+
+                                    <div class="card">
+
+                                        <div class="row">
+                                            <h2>Devices Page</h2>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+
+                                                <div class="row">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="row">
+
+                                                            <div class="field">
+                                                                <label for="COUNTRY">BACKGROUND</label>
+                                                                <input id="COUNTRY" type="color" value="{{site_settings.site_style.styleData.style.pages.home.background_color}}">
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Title</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="TITLE_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="TITLE_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.title.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_COLOR">COLOR</label>
+                                                            <input id="TITLE_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.title.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_WEIGHT">WEIGHT</label>
+
+                                                            <select id="TITLE_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.title.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Body</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="BODY_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="BODY_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.text.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_COLOR">COLOR</label>
+                                                            <input id="BODY_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.text.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_WEIGHT">WEIGHT</label>
+                                                            <select id="BODY_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.text.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Button</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="BUTTON_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="BUTTON_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.buttons.text.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_COLOR">COLOR</label>
+                                                            <input id="BUTTON_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.buttons.text.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_WEIGHT">WEIGHT</label>
+                                                            <select id="BUTTON_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.buttons.text.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div id="status" class="section">
+
+                                    <div class="card">
+
+                                        <div class="row">
+                                            <h2>Status Page</h2>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+
+                                                <div class="row">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="row">
+
+                                                            <div class="field">
+                                                                <label for="COUNTRY">BACKGROUND</label>
+                                                                <input id="COUNTRY" type="color" value="{{site_settings.site_style.styleData.style.pages.home.background_color}}">
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Title</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="TITLE_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="TITLE_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.title.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_COLOR">COLOR</label>
+                                                            <input id="TITLE_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.title.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="TITLE_FONT_WEIGHT">WEIGHT</label>
+
+                                                            <select id="TITLE_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.title.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Body</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="BODY_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="BODY_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.text.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_COLOR">COLOR</label>
+                                                            <input id="BODY_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.text.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BODY_FONT_WEIGHT">WEIGHT</label>
+                                                            <select id="BODY_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.text.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <h3>Page Button</h3>
+                                                </div>
+
+                                                <div class="row mb-2">
+
+                                                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_FAMILY">FONT FAMILY</label>
+                                                            <select id="BUTTON_FONT_FAMILY">
+
+                                                                {% if locale == 'ar' %} <!-- ARABIC  -->
+
+                                                                    <option value="CAIRO">Cairo</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% else %}
+
+                                                                    <option value="BEBAS">Bebas Neue</option>
+                                                                    <option value="Europe/London">Europe/London</option>
+                                                                    <option value="Europe/Dublin">Europe/Dublin</option>
+                                                                    <option value="Europe/Lisbon">Europe/Lisbon</option>
+
+                                                                {% endif %}
+
+                                                            </select>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_SIZE">FONT SIZE</label>
+                                                            <input id="BUTTON_FONT_SIZE" type="number" value="{{site_settings.site_style.styleData.style.pages.home.buttons.text.font_size}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_COLOR">COLOR</label>
+                                                            <input id="BUTTON_FONT_COLOR" type="color" value="{{site_settings.site_style.styleData.style.pages.home.buttons.text.color}}">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2">
+
+                                                        <div class="field">
+
+                                                            <label for="BUTTON_FONT_WEIGHT">WEIGHT</label>
+                                                            <select id="BUTTON_FONT_WEIGHT">
+                                                                <option value="normal">Normal</option>
+                                                                <option value="bold">Bold</option>
+                                                            </select>
+
+                                                            <div>
+                                                                <span>Current</span>
+                                                                <span>{{site_settings.site_style.styleData.style.pages.home.buttons.text.weight}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
+<script>
+
+    function showSection(id, button)
+    {
+        document.querySelectorAll(".section").forEach(section => {
+            section.classList.remove("active");
+        });
+
+        document.querySelectorAll(".tab-button").forEach(tab => {
+            tab.classList.remove("active");
+        });
+
+        const section = document.getElementById(id);
+
+        if (section)
+            section.classList.add("active");
+
+        if (button)
+            button.classList.add("active");
+
+        if (id === "device_status")
+        {
+            loadStatus();
+
+            statusTimer = setInterval(() => {
+                loadStatus();
+            }, 3000);
+        }
+    }
+
+    function setValue(id, element)
+    {
+        const ID = document.getElementById(id);
+    }
+</script>
 {% endblock %}

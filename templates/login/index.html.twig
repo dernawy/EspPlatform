@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% set locale = app.request.attributes.get('_locale') %}
 
-{% block title %}{{ form_title }}{% endblock %}
+{% block title %}{% trans from 'messages' %}app.login.page.title{% endtrans %}{% endblock %}
 
 {% block body %}
 
@@ -18,7 +18,10 @@
             height: 100%;
         }
 
-
+        .login-form-container {
+            width: 90%;
+            margin: 0 auto;
+        }
     </style>
 
     <div class="container-fluid">
@@ -31,7 +34,7 @@
 
                     <div class="login-page-label-rtl d-flex justify-content-center align-items-center label-sized-rtl">
 
-                        {% trans from 'messages' %}application.page.title{% endtrans %}
+                        {% trans from 'messages' %}app.login.user.form.label{% endtrans %}
 
                     </div>
 
@@ -39,7 +42,7 @@
 
                     <div class="login-page-label d-flex justify-content-center align-items-center label-sized">
 
-                        {% trans from 'messages' %}application.page.title{% endtrans %}
+                        {% trans from 'messages' %}app.login.user.form.label{% endtrans %}
 
                     </div>
 
@@ -51,107 +54,94 @@
 
         <div class="row">
 
-            <div class="justify-content-center align-items-center">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-5">
 
-                <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-center">
-                    <div class="row">
+            </div>
 
-                        <div class="col-12 col-xs-12 col-sm-12 col-md-8 col-lg-{{ style.form.width }} col-xl-12 col-xxl-12">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-2">
 
-                            <div class="pl-register-hello-alert-div">
+                <div class="login-form-container">
 
-                                <div id="id-user-hello-alert" class="alert alert-{{ style.alerts.type }}" role="alert">
-                                    {% trans from 'messages' %}application.text.alert.login.message{% endtrans %}
-                                </div>
+                    <div class="pl-register-hello-alert-div">
+
+                        <div id="id-user-hello-alert" class="alert alert-{{ style.alerts.type }}" role="alert">
+                            {% trans from 'messages' %}app.login.user.form.label{% endtrans %}
+                        </div>
+
+                    </div>
+
+                    <form action="{{ path('app_user_login') }}" method="post">
+
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+
+                        {% if locale == 'ar' %}
+
+                            <div class="form-floating mb-3">
+
+                                <input type="text" value="{{ last_username }}" name="username" id="login_username" class="form-control" autocomplete="username" placeholder="Username" required >
+                                <label for="login_username" class="form-label pl-input-label-rtl" id="l_username">{% trans from 'messages' %}app.login.form.username.label{% endtrans %}</label>
 
                             </div>
 
+                            <div class="form-floating mb-3">
 
-                            <form action="{{ path('app_user_login') }}" method="post">
+                                <input type="password" name="password" id="login_password" class="form-control" autocomplete="current-password" placeholder="Password" required >
+                                <label for="login_password" class="form-label pl-input-label-rtl" id="l_password">{% trans from 'messages' %}app.login.form.password.label{% endtrans %}</label>
 
-                                <div class="row">
+                            </div>
 
-                                    {% if locale == 'ar' %}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-                                        <div class="pl-form-label-rtl">{{ form_title }}</div>
+                            <div class="form-check form-switch mb-3">
+                                <label for="remember-rme-check" class="color-label pl-input-label-rtl">
+                                    {% trans from 'messages' %}app.login.form.remember.me.label{% endtrans %}
+                                    <input id="remember-rme-check" class="form-check-input" type="checkbox" name="_remember_me" style="margin: 10px 10px; background-color: #008000;">
+                                </label>
+                            </div>
 
-                                    {% else %}
+                        {% else %}
 
-                                        <div class="pl-form-label">{{ form_title }}</div>
+                            <div class="form-floating mb-3">
 
-                                    {% endif %}
+                                <input type="text" value="{{ last_username }}" name="username" id="login_username" class="form-control" autocomplete="username" placeholder="Username" required>
+                                <label for="login_username" class="form-label pl-input-label" id="l_username">{% trans from 'messages' %}app.login.form.password.label{% endtrans %}</label>
 
-                                </div>
+                            </div>
 
-                                {% if error %}
-                                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                                {% endif %}
+                            <div class="form-floating mb-3">
 
-                                {% if locale == 'ar' %}
+                                <input type="password" name="password" id="login_password" class="form-control" autocomplete="current-password" placeholder="Password" required>
+                                <label for="login_password" class="form-label pl-input-label" id="l_password">{% trans from 'messages' %}app.login.form.password.label{% endtrans %}</label>
 
-                                    <div class="form-floating mb-3">
+                            </div>
 
-                                        <input type="text" value="{{ last_username }}" name="username" id="login_username" class="form-control" autocomplete="username" placeholder="Username" required >
-                                        <label for="login_username" class="form-label pl-input-label-rtl" id="l_username">{% trans from 'messages' %}application.login.form.username.label{% endtrans %}</label>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-                                    </div>
+                            <div class="form-check form-switch mb-3" style="padding-left: 0 !important;">
+                                <label for="remember-rme-check" class="color-label">
+                                    <input id="remember-rme-check" class="form-check-input" type="checkbox" name="_remember_me" style="margin: 5px 10px; background-color: #008000;">
+                                    {% trans from 'messages' %}app.login.form.remember.me.label{% endtrans %}
+                                </label>
+                            </div>
 
-                                    <div class="form-floating mb-3">
+                            <div class="checkbox mb-3">
+                                <a class="pl-input-label white-label" href="{{ path('app_forgot_password_request') }}">Forgot Password</a>
+                            </div>
 
-                                        <input type="password" name="password" id="login_password" class="form-control" autocomplete="current-password" placeholder="Password" required >
-                                        <label for="login_password" class="form-label pl-input-label-rtl" id="l_password">{% trans from 'messages' %}application.login.form.password.label{% endtrans %}</label>
+                        {% endif %}
 
-                                    </div>
+                        <br>
 
-                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <button class="form-control btn btn-lg btn-primary pl-button-label-rtl" type="submit">{% trans from 'messages' %}app.login.form.login.button.label{% endtrans %}</button>
 
-                                    {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                                See https://symfony.com/doc/current/security/remember_me.html#}
+                    </form>
 
-                                    <div class="checkbox mb-3">
-                                        <label class="pl-input-label-rtl color-label"><input type="checkbox" name="_remember_me"> {% trans from 'messages' %}application.login.form.remember.me.label{% endtrans %}</label>
-                                    </div>
-
-                                {% else %}
-
-                                    <div class="form-floating mb-3">
-
-                                        <input type="text" value="{{ last_username }}" name="username" id="login_username" class="form-control" autocomplete="username" placeholder="Username" required>
-                                        <label for="login_username" class="form-label pl-input-label" id="l_username">{% trans from 'messages' %}application.login.form.username.label{% endtrans %}</label>
-
-                                    </div>
-
-                                    <div class="form-floating mb-3">
-
-                                        <input type="password" name="password" id="login_password" class="form-control" autocomplete="current-password" placeholder="Password" required>
-                                        <label for="login_password" class="form-label pl-input-label" id="l_password">{% trans from 'messages' %}application.login.form.password.label{% endtrans %}</label>
-
-                                    </div>
-
-                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-                                    {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                                See https://symfony.com/doc/current/security/remember_me.html#}
-
-                                    <div class="checkbox mb-3">
-                                        <label class="pl-input-label white-label"> <input type="checkbox" name="_remember_me"> {% trans from 'messages' %}application.login.form.remember.me.label{% endtrans %}</label>
-                                    </div>
-
-                                    <div class="checkbox mb-3">
-                                        <a class="pl-input-label white-label" href="{{ path('app_forgot_password_request') }}">Forgot Password</a>
-                                    </div>
-
-                                {% endif %}
-
-                                <br>
-
-                                <button class="form-control btn btn-lg btn-primary" type="submit">{% trans from 'messages' %}application.login.form.button.text{% endtrans %}</button>
-
-                            </form>
-
-                        </div>
-                    </div>
                 </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-5">
 
             </div>
 

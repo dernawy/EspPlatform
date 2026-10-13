@@ -1,4 +1,5 @@
 body {
+    padding-top: 100px;
     zoom: 0.8; /* Zooms out by 80% */
     background-color: #1a1d20;
 }
@@ -30,3 +31,5 @@ body {
 .form-text {
     color: rgb(131 168 205) !important;
 }
+
+

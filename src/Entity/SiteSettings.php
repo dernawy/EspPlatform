@@ -23,6 +23,10 @@ class SiteSettings implements \Serializable
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\ManyToOne(targetEntity: Templates::class, inversedBy: 'id')]
+    #[ORM\JoinColumn(name: 'temp_id', referencedColumnName: 'id', nullable: false)]
+    private ?Templates $template = null;
+
     #[ORM\ManyToOne(targetEntity: Users::class, inversedBy: 'id')]
     #[ORM\JoinColumn(name: 'site_settings_user', referencedColumnName: 'id', nullable: false, onDelete:'CASCADE')]
     private ?Users $site_settings_user = null;
@@ -49,6 +53,18 @@ class SiteSettings implements \Serializable
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getTemplate(): ?Templates
+    {
+        return $this->template;
+    }
+
+    public function setTemplate(Templates $template): static
+    {
+        $this->template = $template;
+
+        return $this;
     }
 
     public function getUser(): ?Users

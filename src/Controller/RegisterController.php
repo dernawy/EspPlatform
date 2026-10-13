@@ -6,6 +6,7 @@ use App\Entity\SiteSettings;
 use App\Entity\Templates;
 use App\Entity\Users;
 use App\Entity\UserSettings;
+use App\Entity\UserStyles;
 use App\Entity\Visitors;
 use App\Form\RegisterType;
 use App\Security\LoginCustomAuthenticator;
@@ -40,12 +41,12 @@ final class RegisterController extends AbstractController
 {
 
     private Tools $tools;
-    private EntityManagerInterface $em;
+    protected EntityManagerInterface $em;
     private UsersService $userService;
     protected ?string $site_name;
     protected ?string $site_slogan;
-    private ?string $template_name;
-    private string $ip;
+    protected ?string $template_name;
+    protected string $ip;
     private string $ipv6;
     private string $public_ip;
     protected ?array $user_settings_array;
@@ -116,7 +117,7 @@ final class RegisterController extends AbstractController
 
         if ($this->getUser()) {
 
-            return $this->redirectToRoute('all_app_home');
+            return $this->redirectToRoute('app_home_page');
         }
 
         $user          = new Users();        // init new User entity
@@ -159,16 +160,292 @@ final class RegisterController extends AbstractController
                 $em->persist($user);
                 $em->flush();
 
-                $this->addFlash('success', 'Welcome '.$user->getUserEmail());
-
-                /* log in user after registration */
-                //$this->authenticateUser($request, $user);
+                //$this->addFlash('success', 'Welcome '.$user->getUserEmail());
 
                 $userAuthenticator->authenticateUser($user, $authenticator, $request);
 
-                // query database to get user info
-                $user_array = $this->userService->getAccUser(['username' => $this->getUser()->getUserIdentifier()]);
+                // set user template (default when register)
+                $templates = new Templates();
 
+                $templates->setTemplateActive(true);
+                $templates->setUser($user);
+                $templates->setTemplateName(DEFAULT_SITE_TEMPLATE_NAME);
+
+                $user_style = new UserStyles();
+
+                $user_style->setUser($user);
+                $user_style->setTemplateName(DEFAULT_SITE_TEMPLATE_NAME);
+                $user_style->setStyleName('default');
+
+                $user_style_settings = [
+                    'style' => [
+                        'template_name'    => DEFAULT_SITE_TEMPLATE_NAME,
+                        'pages' => [
+                            'home'          => [
+                                'background_color' => '#1a1d20',
+                                'title' => [
+                                    'ar' =>[
+                                        'font_family'   => 'Cairo, sans-serif',
+                                    ],
+                                    'font_family'   => 'Bebas Neue, sans-serif',
+                                    'color'  => '#ffffff',
+                                    'font_size'   => '1.5',
+                                    'weight' => 'normal',
+                                ],
+                                'text' => [
+                                    'ar' =>[
+                                        'font_family'   => 'Cairo, sans-serif',
+                                    ],
+                                    'font_family'   => 'Bebas Neue, sans-serif',
+                                    'color'  => '#ffffff',
+                                    'font_size'   => '0.5',
+                                    'weight' => 'normal',
+                                ],
+
+                                'buttons' => [
+                                    'text' => [
+                                        'ar' =>[
+                                            'font_family'   => 'Cairo, sans-serif',
+                                        ],
+                                        'font_family'   => 'Bebas Neue, sans-serif',
+                                        'color'  => '#ffffff',
+                                        'font_size'   => '1',
+                                        'weight' => 'bold',
+                                    ],
+                                    'width' => 'auto',
+                                    'style' => 'btn btn-outline-primary',
+                                ]
+                            ],
+                            'profile'       => [
+                                'background_color' => '#1a1d20',
+                                'title' => [
+                                    'ar' =>[
+                                        'font_family'   => 'Cairo, sans-serif',
+                                    ],
+                                    'font_family'   => 'Bebas Neue, sans-serif',
+                                    'color'  => '#ffffff',
+                                    'font_size'   => '1.5',
+                                    'weight' => 'bold',
+                                ],
+                                'text' => [
+                                    'ar' =>[
+                                        'font_family'   => 'Cairo, sans-serif',
+                                    ],
+                                    'font_family'   => 'Bebas Neue, sans-serif',
+                                    'color'  => '#ffffff',
+                                    'font_size'   => '0.5',
+                                    'weight' => 'normal',
+                                ],
+
+                                'buttons' => [
+                                    'text' => [
+                                        'ar' =>[
+                                            'font_family'   => 'Cairo, sans-serif',
+                                        ],
+                                        'font_family'   => 'Bebas Neue, sans-serif',
+                                        'color'  => '#ffffff',
+                                        'font_size'   => '1',
+                                        'weight' => 'bold',
+                                    ],
+                                    'width' => 'auto',
+                                    'style' => 'btn btn-outline-primary',
+                                ]
+                            ],
+                            'user_settings' => [
+                                'background_color' => '#1a1d20',
+                                'title' => [
+                                    'ar' =>[
+                                        'font_family'   => 'Cairo, sans-serif',
+                                    ],
+                                    'font_family'   => 'Bebas Neue, sans-serif',
+                                    'color'  => '#ffffff',
+                                    'font_size'   => '1.5',
+                                    'weight' => 'bold',
+                                ],
+                                'text' => [
+                                    'ar' =>[
+                                        'font_family'   => 'Cairo, sans-serif',
+                                    ],
+                                    'font_family'   => 'Bebas Neue, sans-serif',
+                                    'color'  => '#ffffff',
+                                    'font_size'   => '0.5',
+                                    'weight' => 'normal',
+                                ],
+                                'tabs' => [
+                                    'header' => [
+                                        'ar' =>[
+                                            'font_family'   => 'Cairo, sans-serif',
+                                        ],
+                                        'background_color' => '#7285b1',
+                                        'font_family'   => 'Bebas Neue, sans-serif',
+                                        'active_color' => '#ffffff',
+                                        'color' => '#ffffff',
+                                        'font_size' => '1',
+                                        'style' => 'nav-tabs',
+                                    ],
+                                    'ar' =>[
+                                        'font_family'   => 'Cairo, sans-serif',
+                                    ],
+                                    'font_family'   => 'Bebas Neue, sans-serif',
+                                    'background_color' => '#b2c2d6',
+                                    'hover_color' => '#141471',
+                                    'color' => 'rgba(0,0,0,0.55)',
+                                    'font_size' => '1',
+                                    'style' => 'nav-tabs',
+                                ],
+                                'buttons' => [
+                                    'text' => [
+                                        'ar' =>[
+                                            'font_family'   => 'Cairo, sans-serif',
+                                        ],
+                                        'font_family'   => 'Bebas Neue, sans-serif',
+                                        'color'  => '#ffffff',
+                                        'font_size'   => '1',
+                                        'weight' => 'bold',
+                                    ],
+                                    'width' => 'auto',
+                                    'style' => 'btn btn-outline-primary',
+                                ]
+                            ],
+                            'site_settings' => [
+                                'background_color' => '#1a1d20',
+                                'title' => [
+                                    'ar' =>[
+                                        'font_family'   => 'Cairo, sans-serif',
+                                    ],
+                                    'font_family'   => 'Bebas Neue, sans-serif',
+                                    'color'  => '#ffffff',
+                                    'font_size'   => '1.5',
+                                    'weight' => 'bold',
+                                ],
+                                'text' => [
+                                    'ar' =>[
+                                        'font_family'   => 'Cairo, sans-serif',
+                                    ],
+                                    'font_family'   => 'Bebas Neue, sans-serif',
+                                    'color'  => '#ffffff',
+                                    'font_size'   => '0.5',
+                                    'weight' => 'normal',
+                                ],
+
+                                'buttons' => [
+                                    'text' => [
+                                        'ar' =>[
+                                            'font_family'   => 'Cairo, sans-serif',
+                                        ],
+                                        'font_family'   => 'Bebas Neue, sans-serif',
+                                        'color'  => '#ffffff',
+                                        'font_size'   => '1',
+                                        'weight' => 'bold',
+                                    ],
+                                    'width' => 'auto',
+                                    'style' => 'btn btn-outline-primary',
+                                ]
+                            ],
+                            'devices'       => [
+                                'background_color' => '#1a1d20',
+                                'title' => [
+                                    'ar' =>[
+                                        'font_family'   => 'Cairo, sans-serif',
+                                    ],
+                                    'font_family'   => 'Bebas Neue, sans-serif',
+                                    'color'  => '#ffffff',
+                                    'font_size'   => '1.5',
+                                    'weight' => 'bold',
+                                ],
+                                'text' => [
+                                    'ar' =>[
+                                        'font_family'   => 'Cairo, sans-serif',
+                                    ],
+                                    'font_family'   => 'Bebas Neue, sans-serif',
+                                    'color'  => '#ffffff',
+                                    'font_size'   => '0.5',
+                                    'weight' => 'normal',
+                                ],
+
+                                'buttons' => [
+                                    'text' => [
+                                        'ar' =>[
+                                            'font_family'   => 'Cairo, sans-serif',
+                                        ],
+                                        'font_family'   => 'Bebas Neue, sans-serif',
+                                        'color'  => '#ffffff',
+                                        'font_size'   => '1',
+                                        'weight' => 'bold',
+                                    ],
+                                    'width' => 'auto',
+                                    'style' => 'btn btn-outline-primary',
+                                ]
+                            ],
+                            'status'        => [
+                                'background_color' => '#1a1d20',
+                                'title' => [
+                                    'ar' =>[
+                                        'font_family'   => 'Cairo, sans-serif',
+                                    ],
+                                    'font_family'   => 'Bebas Neue, sans-serif',
+                                    'color'  => '#ffffff',
+                                    'font_size'   => '1.5',
+                                    'weight' => 'bold',
+                                ],
+                                'text' => [
+                                    'ar' =>[
+                                        'font_family'   => 'Cairo, sans-serif',
+                                    ],
+                                    'font_family'   => 'Bebas Neue, sans-serif',
+                                    'color'  => '#ffffff',
+                                    'font_size'   => '0.5',
+                                    'weight' => 'normal',
+                                ],
+                                'tabs' => [
+                                    'header' => [
+                                        'ar' =>[
+                                            'font_family'   => 'Cairo, sans-serif',
+                                        ],
+                                        'background-color' => '#7285b1',
+                                        'font_family'   => 'Bebas Neue, sans-serif',
+                                        'active_color' => '#ffffff',
+                                        'color' => 'rgba(0,0,0,0.55)',
+                                        'font_size' => '1',
+                                        'style' => 'nav-tabs',
+                                    ],
+                                    'ar' =>[
+                                        'font_family'   => 'Cairo, sans-serif',
+                                    ],
+                                    'font_family'   => 'Bebas Neue, sans-serif',
+                                    'background_color' => '#b2c2d6',
+                                    'hover_color' => '#141471',
+                                    'color' => 'rgba(0,0,0,0.55)',
+                                    'font_size' => '1',
+                                    'style' => 'nav-tabs',
+                                ],
+                                'buttons' => [
+                                    'text' => [
+                                        'ar' =>[
+                                            'font_family'   => 'Cairo,sans-serif',
+                                        ],
+                                        'font_family'   => 'Bebas Neue, sans-serif',
+                                        'color'  => '#ffffff',
+                                        'font_size'   => '1',
+                                        'weight' => 'bold',
+                                    ],
+                                    'width' => 'auto',
+                                    'style' => 'btn btn-outline-primary',
+                                ]
+                            ],
+                        ],
+                    ],
+                ];
+
+                // serialize user general settings
+                $user_style_content  = $serializer->serialize($user_style_settings, 'json');
+
+                // encode user general settings
+                $user_style_data     = json_decode($user_style_content, true);
+
+                $user_style->setStyleData($user_style_data);
+
+                // init user general settings
                 $site_settings = new SiteSettings(); // init new SiteSettings entity
 
                 $site_general_settings  = [
@@ -186,24 +463,21 @@ final class RegisterController extends AbstractController
                     ],
                 ];
 
+                // serialize user general settings
                 $site_general_content  = $serializer->serialize($site_general_settings, 'json');
 
+                // encode user general settings
                 $site_general_data     = json_decode($site_general_content, true);
 
+                // attach user general settings to db table
+                $site_settings->setTemplate($templates);
                 $site_settings->setUser($user);
                 $site_settings->setSettingsName(USERS_STRING);
                 $site_settings->setSiteName(DEFAULT_SITE_NAME);
                 $site_settings->setSiteSetting($site_general_data);
 
-                $user_settings = new UserSettings(); // init new UserSettings entity
-
-                $user_style_settings = [
-                    'style' => [
-                        'template_name'    => DEFAULT_SITE_TEMPLATE_NAME,
-                        'text_color'       => '#000000',
-                        'background_color' => '#ffffff',
-                    ],
-                ];
+                // init user settings
+                $user_settings = new UserSettings();
 
                 $user_network_settings = [
                     'network' => [
@@ -211,8 +485,8 @@ final class RegisterController extends AbstractController
                         'ipv6' => $this->ipv6,
                     ],
                     'position' => [
-                        'lat'         => $record->location->latitude,
-                        'lng'         => $record->location->longitude,
+                        'latitude'    => $record->location->latitude,
+                        'longitude'   => $record->location->longitude,
                         'country'     => $record->country->name,
                         'city'        => $record->city->name,
                         'postal_code' => $record->postal->code
@@ -225,29 +499,18 @@ final class RegisterController extends AbstractController
                     'show_navbar' => true,
                 ];
 
-                $user_style_settings_content   = $serializer->serialize($user_style_settings, 'json');
                 $user_network_settings_content = $serializer->serialize($user_network_settings, 'json');
                 $user_profile_settings_content = $serializer->serialize($user_profile_settings, 'json');
 
-                $user_style_settings_data      = json_decode($user_style_settings_content, true);
                 $user_network_settings_data    = json_decode($user_network_settings_content, true);
                 $user_profile_settings_data    = json_decode($user_profile_settings_content, true);
 
                 $user_settings->setUser($user);
-                $user_settings->setStyleName(DEFAULT_SITE_TEMPLATE_NAME);
                 $user_settings->setUserIp($this->public_ip);
                 $user_settings->setIpv6($this->ipv6);
-                $user_settings->setSiteStyle($user_style_settings_data);
                 $user_settings->setNetworkSettings($user_network_settings_data);
                 $user_settings->setProfileSettings($user_profile_settings_data);
-
-                $templates = new Templates();
-
-                $templates->setUser($user);
-                $templates->setTemplateName(DEFAULT_SITE_TEMPLATE_NAME);
-                $templates->setTemplateActive(true);
-                $templates->setSiteName(DEFAULT_SITE_NAME);
-                $templates->setSiteSlogan(DEFAULT_SITE_SLOGAN);
+                $user_settings->setUserStyle($user_style);
 
                 $visitors = new Visitors();
 
@@ -268,38 +531,7 @@ final class RegisterController extends AbstractController
                 $em->persist($templates);
                 $em->flush();
 
-                $site_settings         = $this->em->getRepository(SiteSettings::class)->findOneBy(['site_settings_user' => $user_array]);
-
-                $site_general_content  = $serializer->serialize($site_settings->getSiteSetting(), 'json');
-
-                $user_settings         = $this->em->getRepository(UserSettings::class)->findOneBy(['user' => $user_array]);
-
-                $site_style_content    = $serializer->serialize($user_settings->getSiteStyle(), 'json');
-                $site_profile_content  = $serializer->serialize($user_settings->getProfileSettings(), 'json');
-                $site_network_content  = $serializer->serialize($user_settings->getNetworkSettings(), 'json');
-
-                $templates_settings = $this->em->getRepository(Templates::class)->findOneBy(['template_name' => $this->template_name]);
-
-
                 return $this->redirectToRoute('app_home_page');
-
-                /*return $this->redirectToRoute('app_home_page', [
-                    'site_settings' => [
-                        'site_general'  => $serializer->decode($site_general_content, 'json'),
-                    ],
-
-                    'user_settings' => [
-                        'user_ip'    => $user_settings->getUserIp(),
-                        'user_ipv6'  => $user_settings->getIpv6(),
-                        'site_style' => $serializer->decode($site_style_content, 'json'),
-                        'profile'    => $serializer->decode($site_profile_content, 'json'),
-                        'network'    => $serializer->decode($site_network_content, 'json'),
-                    ],
-
-                    'templates' => [
-                        'template_name' => $templates_settings,
-                    ],
-                ]);*/
             }
             else
             {

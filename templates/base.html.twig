@@ -29,42 +29,249 @@
             <script src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm" type="module"></script>
         {% endif %}
 
-        <style>
+        {% if app.user %}
 
+            <style>
 
+                body {
+                    background-color: {{site_settings.site_style.styleData.style.pages.user_settings.background_color}};
+                }
 
+                h2 {
+                    color: black;
+                }
 
-        </style>
+                .header {
+                    background: #4a6173;
+                    border-radius: 12px;
+                    width: 95%;
+                    padding: 18px;
+                    margin: 0 auto 15px auto;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                }
+
+                .tabs {
+                    display: flex;
+                    gap: 8px;
+                    overflow-x: auto;
+                    width: 98%;
+                    background: #ffffff;
+                    padding: 10px;
+                    border-radius: 8px;
+                    margin: 0 auto 15px auto;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                }
+
+                .tab-button {
+                    border: none;
+                    background: #eef1f5;
+                    padding: 11px 16px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    white-space: nowrap;
+                    font-size: 14px;
+                }
+
+                .tab-button.active {
+                    background: #202124;
+                    color: #ffffff;
+                }
+
+                .section {
+                    display: none;
+                }
+
+                .section.active {
+                    display: block;
+                }
+
+                .card {
+                    background: #ffffff;
+                    border-radius: 12px;
+                    padding: 18px;
+                    margin-bottom: 15px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                }
+
+                .card h2 {
+                    margin: 0 0 15px;
+                    font-size: 19px;
+                }
+
+                .card h3 {
+                    margin: 20px 0 12px;
+                    font-size: 16px;
+                    border-bottom: 1px solid #e5e7eb;
+                    padding-bottom: 8px;
+                }
+
+                .form-grid {
+                    display: grid;
+                    grid-template-columns: repeat(6, minmax(0, 2fr));
+                    gap: 14px;
+                }
+
+                .field {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .field.full {
+                    grid-column: 1 / -1;
+                }
+
+                .field label {
+                    color: #000000;
+                    font-size: 13px;
+                    font-weight: 600;
+                    margin-bottom: 6px;
+                }
+
+                .field input,
+                .field select {
+                    padding: 5px;
+                    border: 1px solid #d1d5db;
+                    border-radius: 8px;
+                    background: #ffffff;
+                    font-size: 14px;
+                }
+
+                .field input:focus,
+                .field select:focus {
+                    outline: none;
+                    border-color: #555;
+                }
+
+                .field input:disabled {
+                    background: #f3f4f6;
+                    color: #9ca3af;
+                    cursor: not-allowed;
+                }
+
+                #id_user_settings_tabs .nav-item {
+                    background-color: {{site_settings.site_style.styleData.style.pages.user_settings.tabs.header.background_color}};
+                    color: {{site_settings.site_style.styleData.style.pages.user_settings.tabs.header.color}};
+                    font-size: {{site_settings.site_style.styleData.style.pages.user_settings.tabs.header.font_size}};
+                }
+
+                #id_user_settings_tabs .nav-item :hover {
+                    color: #141471;
+                }
+
+                #id_user_settings_tabs .nav-item button {
+                    font-size: {{site_settings.site_style.styleData.style.pages.user_settings.tabs.header.font_size}};
+                }
+
+                #id_user_settings_tabs .nav-item .active {
+
+                    color: black;
+                }
+
+                #id_user_settings_tabs .nav-link {
+                    color: #ffffff;
+                }
+
+                /* Extra small devices (phones, 600px and down) */
+                @media only screen and (max-width: 600px) {
+
+                    .card label {
+
+                        font-size: 0.7rem;
+
+                    }
+
+                    .card input[type="color"] {
+                        width: 40px;
+
+                    }
+
+                    #TITLE_FONT_WEIGHT + div span {
+                        font-size: 0.8rem;
+                        display: inline-block;
+                    }
+
+                    #TITLE_FONT_WEIGHT ~ div span:nth-of-type(2) {
+                        font-size: 0.7rem;
+                        display: inline-block;
+                    }
+
+                    #BODY_FONT_WEIGHT + div span {
+                        font-size: 0.8rem;
+                        display: inline-block;
+                    }
+
+                    #BODY_FONT_WEIGHT ~ div span:nth-of-type(2) {
+                        font-size: 0.7rem;
+                        display: inline-block;
+                    }
+
+                    #BUTTON_FONT_WEIGHT + div span {
+                        font-size: 0.8rem;
+                        display: inline-block;
+                    }
+
+                    #BUTTON_FONT_WEIGHT ~ div span:nth-of-type(2) {
+                        font-size: 0.7rem;
+                        display: inline-block;
+                    }
+
+                    .homepage {
+
+                    }
+                }
+
+                /* Small devices (portrait tablets and large phones, 600px and up) */
+                @media only screen and (min-width: 600px) {
+
+                }
+
+                /* Medium devices (landscape tablets, 768px and up) */
+                @media only screen and (min-width: 768px) {
+
+                }
+
+                /* Large devices (laptops/desktops, 992px and up) */
+                @media only screen and (min-width: 992px) {
+
+                }
+
+                /* Extra large devices (large laptops and desktops, 1200px and up) */
+                @media only screen and (min-width: 1200px) {
+
+                }
+
+            </style>
+
+        {% endif %}
     </head>
     <body>
 
-        <header class="py-4 bg-gray-700">
 
-            <div class="row" style="display: block">
+        <header class="fixed-top">
 
-                {% block page_navbar %}
-                    {{ component('navbar', { name: 'Default'}) }}
-                {% endblock page_navbar %}
+            {% block page_navbar %}
 
-            </div>
+                {{ component('navbar', { name: 'Default'}) }}
+
+            {% endblock page_navbar %}
 
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 
-                <div class="row" style="display: block; margin-top:35px;">
+                <style>
+                    body {
+                        padding-top: 200px !important;
+                    }
+                </style>
 
-                    {% block sub_navbar %}
-                        <div class="sub-nav-wrapper">
-                            <ul class="nav nav-pills nav-fill">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Status</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Devices</a>
-                                </li>
-                            </ul>
-                        </div>
-                    {% endblock sub_navbar %}
-
+                <div class="sub-nav-wrapper">
+                    <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Status</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Devices</a>
+                        </li>
+                    </ul>
                 </div>
 
             {% endif %}
@@ -75,5 +282,6 @@
 
 
         {% endblock %}
+
     </body>
 </html>

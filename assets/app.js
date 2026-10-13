@@ -14,10 +14,11 @@ window.$ = window.jQuery = $;
 import 'bootstrap';
 
 
-import "./styles/core.min.css";
+import './styles/core.min.css';
 import './styles/cyrenaica.min.css'
 import './styles/global.scss';
-import "./styles/app.css";
+import './styles/app.css';
+import './styles/fonts.css';
 
 
 
