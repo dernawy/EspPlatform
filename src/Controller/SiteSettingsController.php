@@ -8,6 +8,12 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class SiteSettingsController extends AbstractController
 {
+    #[Route('/settings', name: 'app_site_settings')]
+    public function siteSettingsNoLocal(): Response
+    {
+        return $this->redirectToRoute('app_site_settings', ['_locale' => 'en']);
+    }
+
     #[Route('/site/settings', name: 'app_site_settings')]
     public function index(): Response
     {

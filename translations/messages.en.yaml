@@ -3,12 +3,15 @@
 app.nav.page.title: ESP Platform
 app.navbar.home: Home
 app.navbar.devices: Devices
+app.navbar.administration: Administration
 
 app.user_dropdown.profile: Profile
 app.user_dropdown.settings: Settings
 
 app.user_dropdown.login: Login
+app.user_dropdown.logout: Logout
 app.user_dropdown.register: Register
+
 ## REGISTER INTRO ##
 
 app.register.intro.user.card.label: Users Registration
@@ -46,6 +49,24 @@ app.text.new.user.register.form.phone.message: The phone number must be in this 
 app.text.new.user.register.form.terms.message: Please accept the terms of use
 app.text.new.user.register.form.button.register.text: Register
 
+## LOGIN ##
+
+app.login.page.title: Login
+app.login.user.form.label: User Login
+app.login.form.username.label: Username
+app.login.username.help.text: Enter your registered username.
+app.login.username.error.blank.message: The username field must not be empty.
+app.login.form.password.label: Password
+app.login.password.help.text: Enter your password.
+app.login.password.error.blank.message: The password field must not be empty.
+app.login.form.remember.me.label: Remember me
+app.login.form.login.button.label: Login now
+
+## HOMEPAGE ##
+
+app.home.page.title: Homepage
+
+app.home.page.devices.card.title: Attached Devices
 
 ## DEVICES ##
 
@@ -55,7 +76,19 @@ app.devices.page.title: Devices
 ## PROFILE ##
 
 app.profile.page.title: Profile
+app.profile.page.menu.user.settings: Settings
 
 ## USER SETTINGS ##
 
 app.user.settings.page.title: User settings
+app.user.settings.tab.label.profile.setting: Profile settings
+app.user.settings.tab.label.site.setting: Site settings
+app.user.settings.tab.label.style.setting: Style settings
+
+## USER SETTINGS / STYLE ##
+app.user.settings.tab.label.style.setting.page.home: Homepage
+app.user.settings.tab.label.style.setting.page.profile: Profile Page
+app.user.settings.tab.label.style.setting.page.user_settings: User Settings Page
+app.user.settings.tab.label.style.setting.page.site_settings: Site Settings Page
+app.user.settings.tab.label.style.setting.page.devices: Devices Page
+app.user.settings.tab.label.style.setting.page.status: Status Page

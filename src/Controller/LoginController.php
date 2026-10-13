@@ -18,12 +18,14 @@ final class LoginController extends AbstractController
     protected EntityManagerInterface $entityManager;
     private ?Tools $tools;
 
+    #[Route('/login', name: 'app_user_login')]
     #[Pure] public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager   = $entityManager;
         $this->tools                 = new Tools();
     }
 
+    #[\Symfony\Component\Routing\Annotation\Route(path: '/login', name: 'app_user_login')]
     public function index(): Response
     {
         return $this->redirectToRoute('app_user_login', ['_locale' => 'en']);
@@ -32,6 +34,10 @@ final class LoginController extends AbstractController
     #[\Symfony\Component\Routing\Annotation\Route(path: '/{_locale<%app.supported_locales%>}/users/login', name: 'app_user_login', methods: ["POST", "GET"])]
     public function login(Request $request, AuthenticationUtils $authenticationUtils, TranslatorInterface $translator): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_home_page'); // Replace 'app_home_page' with your target route name
+        }
+
         $this->denyAccessUnlessGranted('PUBLIC_ACCESS');
 
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -40,8 +46,7 @@ final class LoginController extends AbstractController
 
         return $this->render('login/index.html.twig', [
             'is_mobile'     => $this->tools ->isMobile(),
-            'form_title'    => $translator->trans('application.login.form.label'),
-            'style'         => ['alerts' => ['type' => 'primary'], 'form' => ['width' => '3']],
+            'style'         => ['alerts' => ['type' => 'primary'], 'form' => ['width' => '12']],
             'error'         => $error,
             'last_username' => $lastUsername,
         ]);
@@ -50,7 +55,7 @@ final class LoginController extends AbstractController
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
-        $this->redirect($this->generateUrl('all_app_home'));
+        $this->redirect($this->generateUrl('app_home_page'));
         throw new LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 

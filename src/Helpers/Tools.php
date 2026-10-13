@@ -29,6 +29,7 @@ define("VISITORS_STRING", "Visitors");
 define("USERS_STRING",    "users");
 define("DEFAULT_STRING_CAP",    "DEFAULT");
 
+define("DEFAULT_SIT_SETTINGS_NAME",  "default");
 define("DEFAULT_SITE_NAME",          "New Site Name");
 define("DEFAULT_SITE_SLOGAN",        "New Site Slogan");
 define("DEFAULT_SITE_TEMPLATE_NAME", "default");

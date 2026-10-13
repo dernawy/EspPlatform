@@ -32,6 +32,11 @@ security:
             custom_authenticator: App\Security\LoginCustomAuthenticator
             access_denied_handler: App\Security\AccessDeniedHandler
 
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path: '/'
+
             logout:
                 path: app_logout
                 target: app_home_page

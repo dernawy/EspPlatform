@@ -1,11 +1,12 @@
 app.nav.page.title: ESP Platform
 app.navbar.home: الرئيسية
-app.navbar.user: مستخدم
+app.navbar.devices: الأجهزة
 
 app.user_dropdown.profile: الملف الشخصي
 app.user_dropdown.settings: الإعدادات
 
 app.user_dropdown.login: تسجيل الدخول
+app.user_dropdown.logout: تسجيل الخروج
 app.user_dropdown.register: تسجيل
 ## REGISTER INTRO ##
 
@@ -43,3 +44,13 @@ app.text.new.user.register.form.repassword.message: أعد كتابة كلمة �
 app.text.new.user.register.form.phone.message: رقم الهاتف يجب أن يكون بالثيغة التالية (33636128877+) صيغة الهواتف الخاصة بالاتحاد الأوروبي.
 app.text.new.user.register.form.terms.message: الرجاء الموافقة على شروط الاستخدام
 app.text.new.user.register.form.button.register.text: تسجيل
+
+
+## LOGIN ##
+
+app.login.page.title: تسجيل الدخول
+app.login.user.form.label: تسجيل دخول المستخدمين
+app.login.form.username.label: إسم المستخدم
+app.login.form.password.label: كلمة المرور
+app.login.form.remember.me.label: تذكرني
+app.login.form.login.button.label: دخول

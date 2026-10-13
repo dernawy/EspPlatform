@@ -33,23 +33,23 @@ class LoginType extends AbstractType
         $this->authenticationUtils = $authenticationUtils;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
 
             ->add('username', TextType::class, [
                 'translation_domain' => 'messages',
-                'help'               => 'application.login.form.username.message',
-                'label' => 'application.login.form.username.label',
+                'help'               => 'app.login.username.help.text',
+                'label' => 'app.login.form.username.label',
                 'required' => true,
 
                 'attr' => [
                     'autocomplete'   => 'username',
-                    'placeholder'     => 'application.text.new.user.register.form.placeholder.username.text',
+                    'placeholder'     => 'app.login.form.username.label',
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message'     => 'The username field must not be empty.'
+                        'message'     => 'app.login.username.error.blank.message'
                     ]),
 
                     new Length([
@@ -63,28 +63,28 @@ class LoginType extends AbstractType
 
             ->add('password', PasswordType::class, [
                 'translation_domain' => 'messages',
-                'help'               => 'application.login.form.password.message',
-                'label' => 'application.login.form.password.label',
+                'help'               => 'app.login.password.help.text',
+                'label' => 'app.login.form.password.label',
                 'required' => true,
                 'attr' => [
                     'autocomplete'   => 'current-password',
-                    'placeholder'     => 'application.text.new.user.register.form.placeholder.password.text',
+                    'placeholder'     => 'app.login.form.password.label',
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'The password field must not be empty.'
+                        'message' => 'app.login.password.error.blank.message'
                     ])
                 ]
             ])
 
             ->add('remember_me', CheckboxType::class, [
                 'translation_domain' => 'messages',
-                'label'              => 'application.login.form.remember.me.message',
+                'label'              => 'app.login.form.remember.me.label',
                 'mapped'             => false,
             ])
 
             ->add('login', SubmitType::class, [
-                'label' => 'application.login.form.button.text'
+                'label' => 'app.login.form.login.button.label'
             ]);
 
 
@@ -115,7 +115,7 @@ class LoginType extends AbstractType
         return new RedirectResponse($this->urlGenerator->generate('all_app_home'));
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         /* Note: the form's csrf_token_id must correspond to that for the form login
          * listener in order for the CSRF token to validate successfully.

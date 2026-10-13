@@ -11,7 +11,7 @@
 .label-sized-rtl {
     font-family: 'Cairo', sans-serif;
     text-transform: uppercase;
-    font-size:2.875rem;
+    font-size:2rem;
     font-weight: 900;
     line-height: 2;
     color: #fedf4b;
@@ -33,7 +33,9 @@
 
 .pl-input-label { color: #546e85 !important; font-family: 'Bebas Neue',sans-serif; font-size: 18px !important;}
 
-.pl-input-label-rtl { right: 0; color: #546e85 !important; font-family: 'Cairo',sans-serif; font-size: 18px !important;}
+.pl-input-label-rtl { right: 0; color: #546e85 !important; font-family: 'Cairo',sans-serif !important; font-size: 18px !important;}
+
+.pl-button-label-rtl {right: 0; color: #ffffff !important; font-family: 'Cairo',sans-serif !important; font-size: 18px !important;}
 
 .pl-input-help {font-family: 'cursive',sans-serif; color: #ffffff !important;}
 
@@ -1320,6 +1322,8 @@ emoji-picker {
 
     .pl-input-label-rtl { right: 0; color: #546e85 !important; font-family: 'Cairo',sans-serif; font-size: 18px !important;}
 
+    .pl-button-label-rtl {right: 0; color: #ffffff !important; font-family: 'Cairo',sans-serif !important; font-size: 18px !important;}
+
     .pl-input-help {font-family: 'cursive',sans-serif; color: #ffffff !important;}
 
     .pl-input-help-rtl {font-family: 'Cairo',sans-serif; color: #ffffff !important;}
@@ -1337,7 +1341,7 @@ emoji-picker {
     .label-sized-rtl {
         font-family: 'Cairo', sans-serif;
         text-transform: uppercase;
-        font-size:2.875rem;
+        font-size:2.5rem;
         font-weight: 900;
         line-height: 2;
         color: #fedf4b;
@@ -2176,6 +2180,8 @@ emoji-picker {
 
     .pl-input-label-rtl { right: 0; color: #546e85 !important; font-family: 'Cairo',sans-serif; font-size: 18px !important;}
 
+    .pl-button-label-rtl {right: 0; color: #ffffff !important; font-family: 'Cairo',sans-serif !important; font-size: 20px !important;}
+
     .pl-input-help {font-family: 'cursive',sans-serif; color: #ffffff !important;}
 
     .pl-input-help-rtl {font-family: 'Cairo',sans-serif; color: #ffffff !important;}
@@ -2285,7 +2291,7 @@ emoji-picker {
     .label-sized-rtl {
         font-family: 'Cairo', sans-serif;
         text-transform: uppercase;
-        font-size:2.875rem;
+        font-size:1.5rem;
         font-weight: 900;
         line-height: 2;
         color: #fedf4b;
@@ -3058,6 +3064,8 @@ emoji-picker {
 
     .pl-input-label-rtl { right: 0; color: #546e85 !important; font-family: 'Cairo',sans-serif; font-size: 18px !important;}
 
+    .pl-button-label-rtl {right: 0; color: #ffffff !important; font-family: 'Cairo',sans-serif !important; font-size: 20px !important;}
+
     .pl-input-help {font-family: 'cursive',sans-serif; color: rgb(64 122 76) !important;}
 
     .pl-input-help-rtl {font-family: 'Cairo',sans-serif; color: rgb(64 122 76) !important;}
@@ -3165,7 +3173,7 @@ emoji-picker {
     .label-sized-rtl {
         font-family: 'Cairo', sans-serif;
         text-transform: uppercase;
-        font-size:5.875rem;
+        font-size:1.875rem;
         font-weight: 900;
         line-height: 2;
         color: #fedf4b;
@@ -3935,6 +3943,9 @@ emoji-picker {
 
     .pl-input-label-rtl { right: 0; color: #546e85 !important; font-family: 'Cairo',sans-serif; font-size: 18px !important;}
 
+    .pl-button-label-rtl {right: 0; color: #ffffff !important; font-family: 'Cairo',sans-serif !important; font-size: 22px !important;}
+
+
     .pl-input-help {font-family: 'cursive',sans-serif; color: rgb(64 122 76) !important;}
 
     .pl-input-help-rtl {font-family: 'Cairo',sans-serif; color: rgb(64 122 76) !important;}
@@ -4044,7 +4055,7 @@ emoji-picker {
     .label-sized-rtl {
         font-family: 'Cairo', sans-serif;
         text-transform: uppercase;
-        font-size:2.875rem;
+        font-size:1.875rem;
         font-weight: 900;
         line-height: 2;
         color: #fedf4b;
@@ -4800,9 +4811,11 @@ emoji-picker {
 
     .pl-input-label { color: #546e85 !important; font-family: 'Bebas Neue',sans-serif; font-size: 18px !important;}
 
-    .pl-input-label-rtl { right: 0; color: #546e85 !important; font-family: 'Cairo',sans-serif; font-size: 18px !important;}
+    .pl-input-label-rtl { right: 0; color: #546e85 !important; font-family: 'Cairo',sans-serif !important; font-size: 18px !important;}
 
-    .pl-input-help {font-family: 'cursive',sans-serif; color: rgb(64 122 76) !important;}
+    .pl-button-label-rtl {right: 0; color: #ffffff !important; font-family: 'Cairo',sans-serif !important; font-size: 32px !important;}
+
+    .pl-input-help {font-family: 'cursive',sans-serif !important; color: rgb(64 122 76) !important;}
 
     .pl-input-help-rtl {font-family: 'Cairo',sans-serif; color: rgb(64 122 76) !important;}
 
@@ -4902,7 +4915,7 @@ emoji-picker {
     .label-sized {
         font-family: 'Tuskergrotesk', sans-serif;
         text-transform: uppercase;
-        font-size:2.875rem;
+        font-size: 2.875rem;
         font-weight: 700;
         line-height: 2;
         color: #fedf4b;
@@ -4912,7 +4925,7 @@ emoji-picker {
     .label-sized-rtl {
         font-family: 'Cairo', sans-serif;
         text-transform: uppercase;
-        font-size:8.875rem;
+        font-size: 2.875rem;
         font-weight: 900;
         line-height: 2;
         color: #fedf4b;

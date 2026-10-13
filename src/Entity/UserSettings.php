@@ -24,17 +24,15 @@ class UserSettings
     #[ORM\Column(name: 'user_ipv6', length: 200)]
     private ?string $user_ipv6 = null;
 
-    #[ORM\Column(name: 'style_name', length: 50)]
-    private ?string $style_name = null;
-
-    #[ORM\Column(name: 'site_style', nullable: true)]
-    private array $site_style = [];
-
     #[ORM\Column(name: 'profile_settings', nullable: true)]
     private array $profile_settings = [];
 
     #[ORM\Column(name: 'network_settings', nullable: true)]
     private array $network_settings = [];
+
+    #[ORM\ManyToOne(targetEntity: UserStyles::class, cascade: ['persist'], inversedBy: 'id')]
+    #[ORM\JoinColumn(name: 'style_id', referencedColumnName: 'id', nullable: false, onDelete:'CASCADE')]
+    private ?UserStyles $user_style = null;
 
     public function getId(): ?int
     {
@@ -65,18 +63,6 @@ class UserSettings
         return $this;
     }
 
-    public function getStyleName(): ?string
-    {
-        return $this->style_name;
-    }
-
-    public function setStyleName(string $style_name): static
-    {
-        $this->style_name = $style_name;
-
-        return $this;
-    }
-
     public function getUser(): ?Users
     {
         return $this->user;
@@ -89,14 +75,14 @@ class UserSettings
         return $this;
     }
 
-    public function getSiteStyle(): array
+    public function getUserStyle(): ?UserStyles
     {
-        return $this->site_style;
+        return $this->user_style;
     }
 
-    public function setSiteStyle(array $site_style): static
+    public function setUserStyle(UserStyles $user_style): static
     {
-        $this->site_style = $site_style;
+        $this->user_style = $user_style;
 
         return $this;
     }

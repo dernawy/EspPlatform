@@ -34,6 +34,8 @@ final class UserProfileController extends AbstractController
     #[Route('/{_locale<%app.supported_locales%>}/user/profile', name: 'app_user_profile')]
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+
         return $this->render('user_profile/index.html.twig', [
             'controller_name' => 'UserProfileController',
             'is_mobile'          => $this->tools->isMobile(),
